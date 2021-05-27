@@ -9,9 +9,15 @@
 #include <unordered_set>
 #include <ctime>
 using namespace std;
+#ifdef DEBUG
+
+#endif // DEBUG
 
 int main()
-{ 
+{
+    return 0;  
+}
+void testTree(){
     int k =5;
 
     time_t t;
