@@ -4,22 +4,116 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include"RBTree.h"
+#include"RBTree.h"                                                                         
 #include <set>
 #include <unordered_set>
-#include <ctime>
+#include <ctime> 
+#include <new.h>
 using namespace std;
+const size_t CHAR_INT_CONST = 2;
+const size_t T1_T2_CONST = 1;
 
-int main()
+template<typename T1, typename T2,size_t size>
+    #define XX
+void fun(T1 a, T2 b)
+{
+    cout << size << endl;
+    cout << "模板函数no specialization" << endl;
+}  
+void func() {
+    cout << "##########fc" << endl;
+}
+class C {
+public:
+    typedef int INT;
+    int mi;
+    int& operator *() const{
+       
+        return const_cast<int&>(mi);
+    }
+    typedef void (*F)(void) ;
+    static void  set_m_h(F){
+
+    }
+};
+class CC :public C {
+    friend void fun<char,int,3>(char a, int b);
+};
+void function(C) {
+    cout << "function" << endl;
+}
+template<>
+void fun<char,int,4>(char a, int b)
+{                              
+    //cout << size << endl;
+    cout << "模板函数full specialization" << endl;
+} 
+//#include<stddef.h>
+#include <stdio.h>
+#include <vector>
+#include <numeric> 
+#include <functional> 
+#include <list> 
+#include <windows.h> 
+class b1 {
+public:
+    virtual ~b1() {};
+};
+class b2 {
+public:
+    virtual ~b2() {};
+};
+class d :public b1,public b2{
+public:
+    char* ptr[10];
+    d(int num=0) {
+        size_t size = 5e2;
+        printf("prepare %lld bytes", size * 10);
+        for (int i = 0; i < 10; i++) {
+            ptr[i] = new char[size];
+            memset(ptr[i], 0x3f, size);
+
+            printf("malloc %lf MB\n",   size / 1e6);
+    }
+    }
+    virtual ~d() {
+        cout << "~d()" << endl;
+        for(int i=0;i<10;i++)
+        delete[] ptr[i];
+    };
+};
+int main() {     
+    d d1;
+    d d2; 
+    d1 = d2;
+    Sleep(5*1000);
+    list<int> arr = {  3,2,1 };
+    arr.rbegin();
+    //list<char> arr = { 'A','B','C','D','E','F','G','H' };
+    const string& ref = string(" ");
+    string& ref2 = const_cast<string&>(ref);
+    ref2[0] = '!';
+    cout << ref << endl;
+    next_permutation(arr.begin(),arr.end());
+    for (auto k : arr)cout << k << endl;
+    return 0;
+}
+
+
+
+
+void testTree()
 { 
     int k =5;
-
-    time_t t;
+    ptrdiff_t t; 
+    void* ptr = nullptr;
     t = time(&t);
 
     while(k--){
         RBTree rbt; 
         vector<int> vec;
+                                           
+
         //vector<int> vec{ 69,5,31,42,98,88,0,64,97,33,86,22,90,26,28,9,45,91,25,55,59,70,6,68,2,66,17,56,46,21,85,80,82,75,11,99,35,76,63,58,67,37,32,8,1,87,23,93,54,52 };
         int total = 50; 
         for (int i = 0; i < total; ) {

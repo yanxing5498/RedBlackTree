@@ -10,16 +10,14 @@ bool RBTree::insert(int num) {
 		root = node;
 	}
 	else {
-
-		//Node* res = insertNode(node);
-
+		 
 		Node* cur = root;
 		Node* last = cur;
 		while (cur)
 		{
 
 			last = cur;
-			if (cur->val > node->val) {
+			if (cur->val > num) {
 				cur = cur->left;
 				if (!cur) {
 
