@@ -143,38 +143,36 @@ void RBTree::rebalanceAfterDelete(Node* node)
 	}//这一段交换代码，主要是让待删除节点尽量是叶子节点，也就是让它最多有一个儿子
 
 	Node* parent = node->parent;
-	 
+	Node* del = nullptr;
 	if (!parent) {//根节点单独处理
 		if (root->right) {
 			rotateLeft(root);
-			delete root->left;
+			del = root->left;
 			root->left = nullptr;
 		}
 		else if (root->left) {
 			rotateRight(root);
-			delete root->right;
+			del = root->right;
 			root->right = nullptr;
 		}
 		else {
-			delete root;
+			del = root;
 			root = nullptr;
-		}
-		return;
+		} 
 	}
-
-	if (node->color == Color::RED) {
+	else if (node->color == Color::RED) {
 		if (node == parent->left)parent->left = nullptr;
 		else parent->right = nullptr;
-		delete node;
+		del = node;
 	}
 	else if (getColor(node->left) == Color::RED) {
 		node->val = node->left->val;
-		delete node->left;
+		del = node->left;
 		node->left = nullptr;
 	}
 	else if (getColor(node->right) == Color::RED) {
 		node->val = node->right->val;
-		delete node->right;
+		del = node->right;
 		node->right = nullptr;
 	} //前半段 只要自己或者儿子是红色的相对好处理一些
 
@@ -282,10 +280,10 @@ void RBTree::rebalanceAfterDelete(Node* node)
 		parent = tmp->parent;
 		if (parent->left == tmp)parent->left = nullptr;
 		else parent->right = nullptr;
-		delete tmp;
+		del = tmp;
 	}
 
-
+	delete del;
 	return;
 } 
 Node* RBTree::findMaxNode(Node* node) {

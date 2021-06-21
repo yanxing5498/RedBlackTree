@@ -13,9 +13,10 @@ using namespace std;
  
 
 
- 
+void testTree();
 int main()
 {
+    testTree();
     return 0;  
 }
 void testTree(){ 
