@@ -138,7 +138,7 @@ void RBTree::rebalanceAfterDelete(Node* node)
 {
 	Node* tmp = findMaxNode(node->left);
 	if (tmp) {
-		std::swap(tmp->val, node->val);
+		node->val = tmp->val;
 		node = tmp;
 	}//这一段交换代码，主要是让待删除节点尽量是叶子节点，也就是让它最多有一个儿子
 
