@@ -39,12 +39,14 @@ public:
 
 	void printByInOrder();
 
+	//test rule code
+	int getBlackHeight(Node* node);
+	int getBlackHeightByRandom(Node* node); 
+	bool checkRule1(); //首节点为黑
+	bool checkRule2(Node* node); //没有双红
+	bool checkRule3(Node* node);//等高c
 
-	//int getBlackHeight(Node* node);
-	//int getBlackHeightByRandom(Node* node); 
-	//bool checkRule1(); //首节点为黑
-	//bool checkRule2(Node* node); //没有双红
-	//bool checkRule3(Node* node);//等高
+	
 };
 
 

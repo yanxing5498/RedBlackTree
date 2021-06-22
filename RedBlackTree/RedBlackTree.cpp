@@ -12,7 +12,7 @@
 using namespace std; 
  
 
-
+#define TEST_RULE_CODE
 void testTree();
 int main()
 {
@@ -48,21 +48,25 @@ void testTree(){
 
         for (auto m : vec) {
             rbt.insert(m);
-
-           /* printf(" insert num=%d\n", m);
+        #ifdef TEST_RULE_CODE
+            printf(" insert num=%d\n", m);
             printf("rule1,rule2,rule3:%d %d %d size=%d\n",
-                rbt.checkRule1(), rbt.checkRule2(rbt.root), rbt.checkRule3(rbt.root), rbt.size);*/
+                rbt.checkRule1(), rbt.checkRule2(rbt.root), rbt.checkRule3(rbt.root), rbt.size);
+        #endif // TEST_RULE_CODE
+
         }
 
         rbt.printByInOrder();
         int k = 0;
         for (auto num : vec) {
             bool res = rbt.remove(num);
-
-            //bool c1 = rbt.checkRule1(),c2=rbt.checkRule2(rbt.root),c3= rbt.checkRule3(rbt.root);
-            //printf(" isDeleteOk[%d],num=%d\n", res, num);
-            //printf("rule1,rule2,rule3:%d %d %d size=%d\n",c1,c2,c3, rbt.size);
-            //if (!(c1 && c2 && c3))cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;?
+#ifdef TEST_RULE_CODE
+            bool c1 = rbt.checkRule1(), c2 = rbt.checkRule2(rbt.root), c3 = rbt.checkRule3(rbt.root);
+            printf(" isDeleteOk[%d],num=%d\n", res, num);
+            printf("rule1,rule2,rule3:%d %d %d size=%d\n", c1, c2, c3, rbt.size);
+            if (!(c1 && c2 && c3))cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+#endif // 
+           
             
             if (++k > total - 3)break;
         }

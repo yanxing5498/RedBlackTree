@@ -184,17 +184,16 @@ void RBTree::rebalanceAfterDelete(Node* node)
 			if (parent->color == Color::RED) {//¸¸ºì
 				 
 				if (parent->left == node) {
-					rotateLeft(parent); 
-
+					rotateLeft(parent);  
 					if (getColor(parent->right) == Color::RED)rebalanceAfterInsert(parent->right);
+				 
 				}
 				else {
-					rotateRight(parent); 
+					rotateRight(parent);  
 					if (getColor(parent->left) == Color::RED)rebalanceAfterInsert(parent->left);
-				}
-
+				} 
 			}
-			else if (getColor(parent->left) == Color::RED) {//×óÐÖµÜºì
+			else if (getColor(parent->left) == Color::RED){//×óÐÖµÜºì
 				parent->left->color = Color::BLACK;
 				rotateRight(parent);  
 				Node* cur = parent->left;
@@ -319,9 +318,7 @@ Color RBTree::getColor(Node* node) {
 }
 
 
-//------------test rule code-------------
-/*
-
+//------------test rule code------------- 
 int RBTree::getBlackHeight(Node* node) {
 	if (node == nullptr)return 0;
 	return (node->color == Color::BLACK) + getBlackHeight(node->right);
@@ -341,7 +338,7 @@ bool RBTree::checkRule1() {
 
 bool RBTree::checkRule2(Node* node) {
 	if (!node)return 1;
-	return !((getColor(node->parent) == Color::RED)&& (getColor(node) == Color::RED)) &&
+	return !((getColor(node->parent) == Color::RED) && (getColor(node) == Color::RED)) &&
 		checkRule2(node->right) && checkRule2(node->left);
 }
 
@@ -349,5 +346,7 @@ bool RBTree::checkRule3(Node* node) {
 	if (!node)return 1;
 	return getBlackHeight(node->left) == getBlackHeight(node->right)
 		&& checkRule3(node->left) && checkRule3(node->right);
-}
-*/
+} 
+
+
+ 
